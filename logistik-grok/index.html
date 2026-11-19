@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Northline — Road, warehouse, and sea freight</title>
+  <meta name="description" content="Northline plans freight, warehousing, last-mile delivery, and the sea leg as one route.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="wordmark" href="#top">Northline</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav id="site-nav" aria-label="Page">
+      <a href="#work">What we do</a>
+      <a href="#teams">Teams</a>
+      <a href="#purpose">Purpose</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <p class="eyebrow">Road · Warehouse · Sea</p>
+        <h1>Freight that meets the ship on time.</h1>
+        <p class="lede">Northline runs the truck, the warehouse, and the quay as one route, with a named handoff at every step.</p>
+        <a class="button" href="#contact">Contact the desk</a>
+      </div>
+
+      <div class="hero-scene" aria-hidden="true">
+        <img class="sea" src="assets/sea.svg" alt="">
+        <img class="ship ship-small" src="assets/ships/ship-2.svg" alt="">
+        <img class="ship ship-large" src="assets/ships/ship-1.svg" alt="">
+        <div class="road">
+          <div class="convoy">
+            <img src="assets/trucks/truck-1.svg" alt="">
+            <img src="assets/trucks/truck-2.svg" alt="">
+            <img src="assets/trucks/truck-3.svg" alt="">
+            <img src="assets/trucks/truck-4.svg" alt="">
+            <img src="assets/trucks/truck-5.svg" alt="">
+            <img src="assets/trucks/truck-6.svg" alt="">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="work">
+      <div class="section-intro">
+        <p class="eyebrow">What we do</p>
+        <h2>Four parts of the same route.</h2>
+      </div>
+      <ol class="service-list">
+        <li>
+          <span class="index">01</span>
+          <h3>Freight</h3>
+          <p>Road and ocean freight are booked as one movement. The truck is already assigned when the container is named, so the quay is a handoff, not a waiting room.</p>
+        </li>
+        <li>
+          <span class="index">02</span>
+          <h3>Warehousing</h3>
+          <p>Inbound goods are checked, given a location, and released against an order. A pallet can be found without walking the aisle to ask who put it there.</p>
+        </li>
+        <li>
+          <span class="index">03</span>
+          <h3>Last-mile delivery</h3>
+          <p>Routes are built the evening before. The driver leaves the dock with the load and the paperwork already matched, and exceptions are reported before the customer calls.</p>
+        </li>
+        <li>
+          <span class="index">04</span>
+          <h3>Supply chain</h3>
+          <p>Planning ties the warehouse, the sailing, and the delivery into one schedule. When a vessel slips, the truck plan moves with it instead of being discovered at the gate.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="section section-muted" id="teams">
+      <div class="section-intro">
+        <p class="eyebrow">Teams</p>
+        <h2>The people who keep the handoffs.</h2>
+      </div>
+      <ul class="team-list">
+        <li>
+          <h3>Operations</h3>
+          <p>Owns the daily plan. They confirm sailings, assign trucks, and protect the handoff times the rest of the company has already promised.</p>
+        </li>
+        <li>
+          <h3>Warehouse</h3>
+          <p>Receives, stores, and picks. They know which aisle a pallet is in and which order it has to leave on.</p>
+        </li>
+        <li>
+          <h3>Drivers</h3>
+          <p>Run the road legs and the last mile. They leave with a loaded truck and a route, and they report a delay before the customer discovers it.</p>
+        </li>
+        <li>
+          <h3>Planning</h3>
+          <p>Builds the week. They match capacity to bookings and rewrite the plan when a ship or a road is late.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section" id="purpose">
+      <div class="purpose-grid">
+        <div class="purpose-panel">
+          <p class="eyebrow">Purpose</p>
+          <h2>One team from the warehouse door to the last delivery.</h2>
+          <p>Northline exists so a shipment has one responsible team from the warehouse door to the ship and on to the final stop. The road leg, the quay, and the last mile are planned as a single route.</p>
+        </div>
+        <div class="mission-panel">
+          <p class="eyebrow">Mission</p>
+          <p class="mission-statement">We commit to named handoffs: freight leaves with a confirmed vessel, stored goods have a location and an order, and last-mile routes depart on the day we published.</p>
+          <p>Customers see the same plan we run on the floor — what is booked, where it sits, and when the truck rolls.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-muted" id="contact">
+      <div class="section-intro">
+        <p class="eyebrow">Contact</p>
+        <h2>Write to the desk.</h2>
+      </div>
+      <div class="contact-grid">
+        <form id="contact-form" novalidate>
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" autocomplete="name" required>
+            <p class="field-error" data-error-for="name"></p>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required>
+            <p class="field-error" data-error-for="email"></p>
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+            <p class="field-error" data-error-for="message"></p>
+          </div>
+          <button class="button button-solid" type="submit">Send message</button>
+          <p class="form-success" role="status" hidden>Thank you. The desk will reply to the email you entered.</p>
+        </form>
+        <div class="map-placeholder" role="img" aria-label="Map placeholder for 18 Dockside Avenue, Harbor District, Port Meridian">
+          <span class="map-pin"></span>
+          <div class="map-card">
+            <p class="map-label">Map</p>
+            <p>18 Dockside Avenue<br>Harbor District<br>Port Meridian</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div>
+        <p class="wordmark">Northline</p>
+        <p>Road, warehouse, and sea freight under one plan.</p>
+      </div>
+      <nav aria-label="Footer">
+        <a href="#work">What we do</a>
+        <a href="#teams">Teams</a>
+        <a href="#purpose">Purpose</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <p>18 Dockside Avenue<br>Harbor District<br>Port Meridian</p>
+    </div>
+    <p class="copyright">© 2026 Northline</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

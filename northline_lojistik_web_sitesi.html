@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--
+    ŞİRKET ADI NOTU:
+    Geçici şirket adı "Northline" olarak belirlenmiştir.
+    Sayfa genelinde kolayca bulup değiştirmek için "Northline" kelimesini aratabilirsiniz.
+  -->
+  <title>Northline — Entegre Deniz ve Kara Lojistiği</title>
+  <meta name="description" content="Northline; yük taşımacılığı, depolama, son kilometre teslimat ve tedarik zinciri yönetiminde güvenilir lojistik çözümler sunar.">
+
+  <style>
+    /* ==========================================================================
+       1. TASARIM DEĞİŞKENLERİ (RENK PALETİ VE TİPOGRAFİ)
+       ========================================================================== */
+    :root {
+      --navy: #0B1F3A;
+      --navy-dark: #08172C;
+      --deep-blue: #123A66;
+      --mid-blue: #1F5FA8;
+      --light-blue: #D6E6F5;
+      --off-white: #F4F7FB;
+      --white: #FFFFFF;
+      --error-red: #B42318;
+      --error-bg: #FEF3F2;
+      --success-blue: #123A66;
+      --success-bg: #EBF3FA;
+
+      --font-sans: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+      --max-width: 1120px;
+      --header-height: 68px;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --shadow-card: 0 8px 24px rgba(11, 31, 58, 0.06);
+      --shadow-hover: 0 12px 30px rgba(11, 31, 58, 0.11);
+    }
+
+    /* ==========================================================================
+       2. TEMEL SIFIRLAMA VE GENEL STİLLER
+       ========================================================================== */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: var(--header-height);
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--navy); /* Açık zeminlerde saf siyah yerine koyu lacivert */
+      background-color: var(--white);
+      line-height: 1.65;
+      font-size: 16px;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img,
+    svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    /* Ortak kapsayıcı */
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin-inline: auto;
+      padding-inline: 1.25rem;
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        padding-inline: 2rem;
+      }
+    }
+
+    /* Erişilebilirlik odak halkası */
+    :focus-visible {
+      outline: 2px solid var(--mid-blue);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    /* ==========================================================================
+       3. ÜST BİLGİ (STICKY HEADER & MOBİL MENÜ)
+       ========================================================================== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--header-height);
+      background-color: rgba(11, 31, 58, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(214, 230, 245, 0.14);
+      color: var(--white);
+    }
+
+    .header-inner {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-wordmark {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--white);
+    }
+
+    .brand-mark-line {
+      width: 22px;
+      height: 14px;
+      stroke: var(--light-blue);
+    }
+
+    .nav-list {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-link {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--light-blue);
+      padding: 0.4rem 0.2rem;
+      border-radius: 4px;
+      transition: color 0.2s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link:focus-visible {
+      color: var(--white);
+    }
+
+    /* Mobil menü butonu */
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      border: 1px solid rgba(214, 230, 245, 0.3);
+      border-radius: var(--radius-sm);
+      color: var(--white);
+      width: 44px;
+      height: 44px;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .menu-toggle:hover {
+      background-color: var(--deep-blue);
+      border-color: var(--light-blue);
+    }
+
+    .menu-toggle svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--white);
+    }
+
+    @media (max-width: 767px) {
+      .menu-toggle {
+        display: inline-flex;
+      }
+
+      .site-nav {
+        position: absolute;
+        top: var(--header-height);
+        left: 0;
+        right: 0;
+        background-color: var(--navy);
+        border-bottom: 1px solid rgba(214, 230, 245, 0.18);
+        padding: 0.75rem 1.25rem 1.25rem;
+        display: none;
+        box-shadow: 0 14px 28px rgba(8, 23, 44, 0.45);
+      }
+
+      .site-nav.is-open {
+        display: block;
+      }
+
+      .nav-list {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.25rem;
+      }
+
+      .nav-link {
+        display: block;
+        padding: 0.75rem 0.75rem;
+        border-radius: var(--radius-sm);
+        font-size: 1rem;
+      }
+
+      .nav-link:hover {
+        background-color: var(--deep-blue);
+      }
+    }
+
+    /* ==========================================================================
+       4. HERO BÖLÜMÜ (~100VH, DENİZ, 2 GEMİ VE 6 TIR KONVOYU)
+       ========================================================================== */
+    .hero {
+      position: relative;
+      background-color: var(--navy);
+      color: var(--white);
+      min-height: calc(100vh - var(--header-height));
+      min-height: calc(100svh - var(--header-height));
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+
+    .hero-content-wrap {
+      position: relative;
+      z-index: 5;
+      padding-top: clamp(2rem, 6vh, 5rem);
+      padding-bottom: 1rem;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--light-blue);
+      background-color: rgba(31, 95, 168, 0.28);
+      border: 1px solid rgba(214, 230, 245, 0.22);
+      padding: 0.32rem 0.8rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+
+    .hero-title {
+      font-size: clamp(1.85rem, 4.4vw, 3.35rem);
+      line-height: 1.14;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      max-width: 18ch;
+      margin-bottom: 0.9rem;
+      color: var(--white);
+    }
+
+    .hero-subtitle {
+      font-size: clamp(0.98rem, 1.6vw, 1.2rem);
+      color: var(--light-blue);
+      max-width: 54ch;
+      margin-bottom: clamp(1.25rem, 3vh, 2rem);
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background-color: var(--mid-blue);
+      color: var(--white);
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.85rem 1.65rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(214, 230, 245, 0.25);
+      cursor: pointer;
+      transition: background-color 0.2s ease, transform 0.15s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: #256ec2;
+      transform: translateY(-1px);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    /* Görsel Sahne: Deniz + 2 Gemi + 6 Tır Konvoyu */
+    .hero-stage {
+      position: relative;
+      width: 100%;
+      margin-top: auto;
+      padding-top: clamp(3.2rem, 8vw, 6.5rem);
+      user-select: none;
+    }
+
+    /* Gemiler katmanı */
+    .ships-layer {
+      position: relative;
+      z-index: 3;
+      width: 100%;
+      max-width: var(--max-width);
+      margin-inline: auto;
+      padding-inline: 0.75rem;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: clamp(-14px, -1.6vw, -22px);
+      pointer-events: none;
+    }
+
+    /* Sol: Küçük kargo gemisi (ship-2) */
+    .ship-small {
+      width: clamp(108px, 23vw, 240px);
+      margin-left: clamp(0.25rem, 3vw, 2.5rem);
+      transform: translateY(4px);
+    }
+
+    /* Sağ: Büyük konteyner gemisi (ship-1) */
+    .ship-large {
+      width: clamp(175px, 38vw, 410px);
+      margin-right: clamp(0.25rem, 2vw, 1.5rem);
+    }
+
+    /* Deniz katmanı (sea.svg eşdeğeri katmanlı dalgalar) */
+    .sea-layer {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      line-height: 0;
+    }
+
+    .sea-svg {
+      width: 100%;
+      height: clamp(54px, 8.5vw, 108px);
+    }
+
+    /* Alt rıhtım bandı ve 6 Tırlık Konvoy */
+    .convoy-quay {
+      position: relative;
+      z-index: 4;
+      background-color: var(--navy-dark);
+      border-top: 1.5px solid rgba(214, 230, 245, 0.35);
+      padding-top: clamp(0.55rem, 1.3vw, 1rem);
+      padding-bottom: clamp(0.65rem, 1.5vw, 1.15rem);
+    }
+
+    .convoy-track {
+      max-width: var(--max-width);
+      margin-inline: auto;
+      padding-inline: clamp(0.5rem, 2vw, 2rem);
+      display: grid;
+      /* Altı tırın tamamı her ekran boyutunda tek sırada görünür kalır */
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: clamp(4px, 1.3vw, 18px);
+      align-items: end;
+    }
+
+    .truck-item {
+      width: 100%;
+    }
+
+    .convoy-road-line {
+      max-width: var(--max-width);
+      margin: 2px auto 0;
+      padding-inline: clamp(0.5rem, 2vw, 2rem);
+    }
+
+    .convoy-road-line span {
+      display: block;
+      width: 100%;
+      height: 1.5px;
+      background: repeating-linear-gradient(
+        to right,
+        rgba(214, 230, 245, 0.45) 0,
+        rgba(214, 230, 245, 0.45) 18px,
+        transparent 18px,
+        transparent 30px
+      );
+    }
+
+    /* Tüm gemi ve tır SVG'leri için tek tip çizgi (stroke-only) kuralı */
+    .line-illustration path,
+    .line-illustration rect,
+    .line-illustration circle,
+    .line-illustration line,
+    .line-illustration polyline,
+    .line-illustration polygon {
+      fill: none;
+      stroke: var(--light-blue);
+      stroke-width: 1.75px;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      vector-effect: non-scaling-stroke;
+    }
+
+    @media (max-width: 480px) {
+      .line-illustration path,
+      .line-illustration rect,
+      .line-illustration circle,
+      .line-illustration line,
+      .line-illustration polyline,
+      .line-illustration polygon {
+        stroke-width: 1.35px;
+      }
+    }
+
+    /* ==========================================================================
+       5. ORTAK BÖLÜM STİLLERİ
+       ========================================================================== */
+    .section {
+      padding-block: clamp(4rem, 7vw, 6rem);
+    }
+
+    .section-light {
+      background-color: var(--off-white);
+    }
+
+    .section-white {
+      background-color: var(--white);
+    }
+
+    .section-navy {
+      background-color: var(--navy);
+      color: var(--white);
+    }
+
+    .section-header {
+      max-width: 660px;
+      margin-bottom: clamp(2.25rem, 4vw, 3.25rem);
+    }
+
+    .section-kicker {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--mid-blue);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-navy .section-kicker {
+      color: var(--light-blue);
+    }
+
+    .section-title {
+      font-size: clamp(1.65rem, 3vw, 2.35rem);
+      line-height: 1.2;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-navy .section-title {
+      color: var(--white);
+    }
+
+    .section-lead {
+      font-size: 1.05rem;
+      color: var(--deep-blue);
+    }
+
+    /* ==========================================================================
+       6. NELER YAPIYORUZ (4 HİZMET KARTI)
+       ========================================================================== */
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 640px) {
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .services-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .service-card {
+      background-color: var(--white);
+      border: 1px solid var(--light-blue);
+      border-top: 4px solid var(--mid-blue);
+      border-radius: var(--radius-md);
+      padding: 1.75rem 1.5rem;
+      box-shadow: var(--shadow-card);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .service-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .service-index {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--mid-blue);
+      letter-spacing: 0.08em;
+    }
+
+    .service-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.3;
+    }
+
+    .service-desc {
+      font-size: 0.96rem;
+      color: var(--navy);
+      opacity: 0.9;
+    }
+
+    /* ==========================================================================
+       7. EKİPLERİMİZ (4 EKİP)
+       ========================================================================== */
+    .teams-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .teams-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .team-card {
+      background-color: var(--off-white);
+      border: 1px solid var(--light-blue);
+      border-radius: var(--radius-md);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .team-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .team-name {
+      font-size: 1.22rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .team-badge {
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--deep-blue);
+      background-color: var(--light-blue);
+      padding: 0.22rem 0.65rem;
+      border-radius: 999px;
+    }
+
+    .team-desc {
+      font-size: 0.98rem;
+      color: var(--navy);
+    }
+
+    /* ==========================================================================
+       8. AMAÇ VE MİSYON (2 NET BLOK)
+       ========================================================================== */
+    .purpose-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+    }
+
+    @media (min-width: 768px) {
+      .purpose-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .purpose-block {
+      background-color: var(--deep-blue);
+      border: 1px solid rgba(214, 230, 245, 0.22);
+      border-radius: var(--radius-lg);
+      padding: clamp(1.75rem, 3.5vw, 2.5rem);
+    }
+
+    .purpose-label {
+      display: inline-block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--light-blue);
+      margin-bottom: 0.75rem;
+    }
+
+    .purpose-heading {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.9rem;
+      line-height: 1.28;
+    }
+
+    .purpose-text {
+      font-size: 1.02rem;
+      color: var(--off-white);
+      line-height: 1.7;
+    }
+
+    /* ==========================================================================
+       9. İLETİŞİM FORMU VE HARİTA YER TUTUCUSU
+       ========================================================================== */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      align-items: stretch;
+    }
+
+    @media (min-width: 900px) {
+      .contact-layout {
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 2.5rem;
+      }
+    }
+
+    .contact-form-card {
+      background-color: var(--white);
+      border: 1px solid var(--light-blue);
+      border-radius: var(--radius-lg);
+      padding: clamp(1.5rem, 3vw, 2.25rem);
+      box-shadow: var(--shadow-card);
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 0.4rem;
+    }
+
+    .form-control {
+      width: 100%;
+      font-family: inherit;
+      font-size: 1rem;
+      color: var(--navy);
+      background-color: var(--off-white);
+      border: 1.5px solid var(--light-blue);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem 0.9rem;
+      transition: border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .form-control:focus {
+      outline: none;
+      background-color: var(--white);
+      border-color: var(--mid-blue);
+    }
+
+    .form-control.has-error {
+      border-color: var(--error-red);
+      background-color: var(--error-bg);
+    }
+
+    textarea.form-control {
+      min-height: 128px;
+      resize: vertical;
+    }
+
+    .field-error {
+      display: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--error-red);
+      margin-top: 0.38rem;
+    }
+
+    .field-error.is-visible {
+      display: block;
+    }
+
+    .form-success {
+      display: none;
+      margin-top: 1.25rem;
+      padding: 1rem 1.15rem;
+      border-radius: var(--radius-sm);
+      background-color: var(--success-bg);
+      border: 1px solid var(--mid-blue);
+      color: var(--success-blue);
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .form-success.is-visible {
+      display: block;
+    }
+
+    /* Harita Yer Tutucusu (Üçüncü parti harita betiği içermez) */
+    .map-placeholder {
+      position: relative;
+      background-color: var(--navy);
+      color: var(--white);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--deep-blue);
+      padding: 1.75rem;
+      min-height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+
+    .map-grid-art {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.24;
+      pointer-events: none;
+    }
+
+    .map-grid-art path,
+    .map-grid-art line,
+    .map-grid-art circle,
+    .map-grid-art rect {
+      fill: none;
+      stroke: var(--light-blue);
+      stroke-width: 1.4px;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .map-badge-wrap {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .map-badge {
+      display: inline-block;
+      background-color: var(--mid-blue);
+      color: var(--white);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.85rem;
+      border-radius: var(--radius-sm);
+    }
+
+    .map-coords {
+      font-size: 0.82rem;
+      color: var(--light-blue);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .map-pin-center {
+      position: relative;
+      z-index: 2;
+      margin-block: auto;
+      padding-block: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .map-pin-icon {
+      width: 38px;
+      height: 38px;
+      flex-shrink: 0;
+    }
+
+    .map-pin-icon path,
+    .map-pin-icon circle {
+      fill: none;
+      stroke: var(--light-blue);
+      stroke-width: 1.8px;
+    }
+
+    .map-terminal-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .map-terminal-sub {
+      font-size: 0.88rem;
+      color: var(--light-blue);
+    }
+
+    .map-address-box {
+      position: relative;
+      z-index: 2;
+      background-color: rgba(18, 58, 102, 0.82);
+      border: 1px solid rgba(214, 230, 245, 0.25);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.15rem;
+    }
+
+    .map-address-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--light-blue);
+      margin-bottom: 0.25rem;
+    }
+
+    .map-address-line {
+      font-style: normal;
+      font-size: 0.95rem;
+      color: var(--white);
+      line-height: 1.5;
+    }
+
+    /* ==========================================================================
+       10. ALT BİLGİ (FOOTER)
+       ========================================================================== */
+    .site-footer {
+      background-color: var(--navy-dark);
+      color: var(--light-blue);
+      border-top: 1px solid rgba(214, 230, 245, 0.14);
+      padding-top: 3.25rem;
+      padding-bottom: 2rem;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding-bottom: 2.25rem;
+      border-bottom: 1px solid rgba(214, 230, 245, 0.12);
+    }
+
+    @media (min-width: 768px) {
+      .footer-top {
+        grid-template-columns: 1.4fr 1fr 1.2fr;
+        align-items: start;
+      }
+    }
+
+    .footer-brand-desc {
+      margin-top: 0.65rem;
+      font-size: 0.95rem;
+      max-width: 38ch;
+      color: var(--light-blue);
+    }
+
+    .footer-heading {
+      font-size: 0.84rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      margin-bottom: 0.85rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .footer-links a {
+      font-size: 0.95rem;
+      color: var(--light-blue);
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--white);
+    }
+
+    .footer-address {
+      font-style: normal;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .footer-bottom {
+      padding-top: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.75rem;
+      font-size: 0.88rem;
+      color: rgba(214, 230, 245, 0.78);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================================================
+       1. ÜST BİLGİ (HEADER)
+       ======================================================================== -->
+  <header class="site-header" id="ust">
+    <div class="container header-inner">
+      <a href="#ust" class="brand-wordmark" aria-label="Northline Ana Sayfa">
+        <svg class="brand-mark-line" viewBox="0 0 24 16" fill="none" aria-hidden="true">
+          <path d="M2 13L8 3H22" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 13H20" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+        <span>Northline</span>
+      </a>
+
+      <button
+        type="button"
+        class="menu-toggle"
+        id="menuToggle"
+        aria-expanded="false"
+        aria-controls="primaryNav"
+        aria-label="Gezinme menüsünü aç veya kapat"
+      >
+        <svg id="menuIconOpen" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <line x1="4" y1="7" x2="20" y2="7" stroke-width="2" stroke-linecap="round"/>
+          <line x1="4" y1="12" x2="20" y2="12" stroke-width="2" stroke-linecap="round"/>
+          <line x1="4" y1="17" x2="20" y2="17" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <svg id="menuIconClose" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="display: none;">
+          <line x1="6" y1="6" x2="18" y2="18" stroke-width="2" stroke-linecap="round"/>
+          <line x1="18" y1="6" x2="6" y2="18" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <nav class="site-nav" id="primaryNav" aria-label="Ana Menü">
+        <ul class="nav-list">
+          <li><a href="#neler-yapiyoruz" class="nav-link">Neler Yapıyoruz</a></li>
+          <li><a href="#ekiplerimiz" class="nav-link">Ekiplerimiz</a></li>
+          <li><a href="#amacimiz" class="nav-link">Amacımız</a></li>
+          <li><a href="#iletisim" class="nav-link">İletişim</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ======================================================================
+         2. HERO BÖLÜMÜ (DENİZ, 2 GEMİ VE 6 TIRLIK KONVOY)
+         ====================================================================== -->
+    <section class="hero" aria-labelledby="heroHeading">
+      <div class="container hero-content-wrap">
+        <span class="hero-eyebrow">Northline Deniz &amp; Kara Lojistiği</span>
+        <h1 class="hero-title" id="heroHeading">
+          Limandan kapıya tek hat üzerinde kesintisiz sevkiyat.
+        </h1>
+        <p class="hero-subtitle">
+          Northline; deniz aşırı yük gemilerini, gümrüklü bölge depolarını ve kara yolu filosunu dakiklik esaslı tek bir operasyonda birleştirir.
+        </p>
+        <a href="#iletisim" class="btn-primary">
+          İletişime Geçin
+        </a>
+      </div>
+
+      <!-- Görsel Sahne: 2 Gemi + Katmanlı Deniz + 6 Tır Konvoyu -->
+      <div class="hero-stage" aria-hidden="true">
+
+        <!-- Gemiler (Sol: Küçük Kargo Gemisi [ship-2], Sağ: Büyük Konteyner Gemisi [ship-1]) -->
+        <div class="ships-layer">
+          <!-- assets/ships/ship-2.svg : Küçük Kargo Gemisi -->
+          <div class="ship-small">
+            <svg class="line-illustration" id="asset-ship-2" viewBox="0 0 230 84">
+              <!-- Gövde (Hull) -->
+              <path d="M12 56 L30 74 L196 74 L218 52 L174 52 L166 56 Z"/>
+              <line x1="22" y1="64" x2="204" y2="64"/>
+              <!-- Kıç Köprüüstü (Bridge) -->
+              <rect x="28" y="34" width="38" height="22"/>
+              <rect x="34" y="22" width="24" height="12"/>
+              <line x1="40" y1="28" x2="52" y2="28"/>
+              <line x1="35" y1="42" x2="43" y2="42"/>
+              <line x1="49" y1="42" x2="59" y2="42"/>
+              <!-- Baca ve Direk -->
+              <polyline points="32,22 32,12 40,12 40,22"/>
+              <line x1="50" y1="22" x2="50" y2="8"/>
+              <line x1="45" y1="12" x2="55" y2="12"/>
+              <!-- Kargo Ambar Kapakları ve Güverte Vinci -->
+              <rect x="76" y="45" width="38" height="11"/>
+              <rect x="122" y="45" width="38" height="11"/>
+              <line x1="118" y1="56" x2="118" y2="26"/>
+              <line x1="118" y1="28" x2="96" y2="42"/>
+              <line x1="118" y1="28" x2="142" y2="42"/>
+              <!-- Baş Bodoslama Direği -->
+              <line x1="198" y1="52" x2="198" y2="38"/>
+            </svg>
+          </div>
+
+          <!-- assets/ships/ship-1.svg : Büyük Konteyner Gemisi -->
+          <div class="ship-large">
+            <svg class="line-illustration" id="asset-ship-1" viewBox="0 0 380 112">
+              <!-- Ana Gövde -->
+              <path d="M14 74 L36 98 L334 98 L366 68 L316 68 L306 74 Z"/>
+              <line x1="26" y1="85" x2="348" y2="85"/>
+              <!-- Köprüüstü Kulesi -->
+              <rect x="44" y="34" width="44" height="40"/>
+              <rect x="40" y="22" width="52" height="12"/>
+              <line x1="48" y1="28" x2="84" y2="28"/>
+              <line x1="52" y1="44" x2="80" y2="44"/>
+              <line x1="52" y1="54" x2="80" y2="54"/>
+              <!-- Radar Direği ve Baca -->
+              <line x1="66" y1="22" x2="66" y2="6"/>
+              <line x1="58" y1="11" x2="74" y2="11"/>
+              <polyline points="24,74 24,50 36,50 36,74"/>
+              <!-- Konteyner İstif Blokları (1. Grup) -->
+              <rect x="98" y="58" width="46" height="16"/>
+              <rect x="98" y="42" width="46" height="16"/>
+              <rect x="98" y="28" width="46" height="14"/>
+              <line x1="121" y1="28" x2="121" y2="74"/>
+              <!-- Konteyner İstif Blokları (2. Grup) -->
+              <rect x="152" y="58" width="46" height="16"/>
+              <rect x="152" y="42" width="46" height="16"/>
+              <rect x="152" y="28" width="46" height="14"/>
+              <line x1="175" y1="28" x2="175" y2="74"/>
+              <!-- Konteyner İstif Blokları (3. Grup) -->
+              <rect x="206" y="58" width="46" height="16"/>
+              <rect x="206" y="42" width="46" height="16"/>
+              <line x1="229" y1="42" x2="229" y2="74"/>
+              <!-- Konteyner İstif Blokları (4. Grup - Baş Taraf) -->
+              <rect x="260" y="58" width="40" height="16"/>
+              <rect x="260" y="44" width="40" height="14"/>
+              <line x1="280" y1="44" x2="280" y2="74"/>
+              <!-- Baş Direk -->
+              <line x1="342" y1="68" x2="342" y2="48"/>
+              <line x1="336" y1="53" x2="346" y2="53"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- assets/sea.svg : Lacivert ve Mavi Katmanlı Deniz Dalgaları -->
+        <div class="sea-layer">
+          <svg class="sea-svg" id="asset-sea" viewBox="0 0 1440 120" preserveAspectRatio="none">
+            <!-- Arka derin mavi dalga -->
+            <path
+              fill="#123A66"
+              d="M0,34 C180,8 360,58 540,34 C720,10 900,56 1080,30 C1260,6 1360,38 1440,26 L1440,120 L0,120 Z"
+            />
+            <!-- Orta mavi dalga -->
+            <path
+              fill="#1F5FA8"
+              d="M0,62 C210,36 410,84 640,58 C870,32 1060,82 1270,56 C1355,46 1405,54 1440,60 L1440,120 L0,120 Z"
+            />
+            <!-- Ön koyu lacivert kıyı dalgası -->
+            <path
+              fill="#0E2A4F"
+              d="M0,88 C240,70 480,106 720,88 C960,70 1200,104 1440,86 L1440,120 L0,120 Z"
+            />
+          </svg>
+        </div>
+
+        <!-- Altı Tırlık Konvoy (Tümü sağa doğru aynı yöne bakar, mobilde silinmez, ölçeklenir) -->
+        <div class="convoy-quay">
+          <div class="convoy-track">
+
+            <!-- assets/trucks/truck-1.svg : Kapalı Kasa Çekici -->
+            <div class="truck-item">
+              <svg class="line-illustration" id="asset-truck-1" viewBox="0 0 180 74">
+                <!-- Dorse -->
+                <rect x="8" y="12" width="108" height="40" rx="2"/>
+                <line x1="8" y1="45" x2="116" y2="45"/>
+                <!-- Şasi Bağlantısı -->
+                <line x1="116" y1="48" x2="124" y2="48"/>
+                <!-- Çekici Kabini -->
+                <path d="M124 52 V22 H152 L166 36 V52 Z"/>
+                <polyline points="144,26 144,36 161,36"/>
+                <line x1="166" y1="44" x2="171" y2="44"/>
+                <!-- Tekerlekler -->
+                <circle cx="28" cy="58" r="9"/>
+                <circle cx="50" cy="58" r="9"/>
+                <circle cx="102" cy="58" r="9"/>
+                <circle cx="149" cy="58" r="9"/>
+              </svg>
+            </div>
+
+            <!-- assets/trucks/truck-2.svg : Konteyner Taşıyıcı Tır -->
+            <div class="truck-item">
+              <svg class="line-illustration" id="asset-truck-2" viewBox="0 0 180 74">
+                <!-- Konteyner Gövdesi -->
+                <rect x="8" y="14" width="108" height="36"/>
+                <line x1="30" y1="18" x2="30" y2="46"/>
+                <line x1="52" y1="18" x2="52" y2="46"/>
+                <line x1="74" y1="18" x2="74" y2="46"/>
+                <line x1="96" y1="18" x2="96" y2="46"/>
+                <line x1="6" y1="50" x2="124" y2="50"/>
+                <!-- Çekici Kabini -->
+                <path d="M124 52 V24 H150 L166 37 V52 Z"/>
+                <polyline points="143,28 143,37 161,37"/>
+                <line x1="166" y1="45" x2="171" y2="45"/>
+                <!-- Tekerlekler -->
+                <circle cx="28" cy="58" r="9"/>
+                <circle cx="49" cy="58" r="9"/>
+                <circle cx="102" cy="58" r="9"/>
+                <circle cx="149" cy="58" r="9"/>
+              </svg>
+            </div>
+
+            <!-- assets/trucks/truck-3.svg : Soğuk Zincir (Frigorifik) Tır -->
+            <div class="truck-item">
+              <svg class="line-illustration" id="asset-truck-3" viewBox="0 0 180 74">
+                <!-- Dorse ve Ön Soğutucu Ünite -->
+                <rect x="8" y="12" width="104" height="40" rx="2"/>
+                <rect x="112" y="16" width="7" height="22"/>
+                <line x1="14" y1="28" x2="106" y2="28"/>
+                <line x1="112" y1="48" x2="124" y2="48"/>
+                <!-- Aerodinamik Kabin -->
+                <path d="M124 52 V20 C134 20 144 22 152 25 L166 37 V52 Z"/>
+                <polyline points="144,26 144,37 161,37"/>
+                <line x1="166" y1="44" x2="171" y2="44"/>
+                <!-- Tekerlekler -->
+                <circle cx="28" cy="58" r="9"/>
+                <circle cx="50" cy="58" r="9"/>
+                <circle cx="100" cy="58" r="9"/>
+                <circle cx="149" cy="58" r="9"/>
+              </svg>
+            </div>
+
+            <!-- assets/trucks/truck-4.svg : Açık Platform (Flatbed) Yük Tırı -->
+            <div class="truck-item">
+              <svg class="line-illustration" id="asset-truck-4" viewBox="0 0 180 74">
+                <!-- Platform Tabanı ve Sabitlenmiş Sandık Yükler -->
+                <rect x="8" y="46" width="110" height="6"/>
+                <line x1="116" y1="20" x2="116" y2="46"/>
+                <rect x="14" y="24" width="44" height="22"/>
+                <line x1="36" y1="24" x2="36" y2="46"/>
+                <rect x="64" y="28" width="44" height="18"/>
+                <line x1="86" y1="28" x2="86" y2="46"/>
+                <line x1="118" y1="49" x2="124" y2="49"/>
+                <!-- Çekici Kabini -->
+                <path d="M124 52 V23 H151 L166 36 V52 Z"/>
+                <polyline points="143,27 143,36 161,36"/>
+                <line x1="166" y1="44" x2="171" y2="44"/>
+                <!-- Tekerlekler -->
+                <circle cx="28" cy="58" r="9"/>
+                <circle cx="50" cy="58" r="9"/>
+                <circle cx="102" cy="58" r="9"/>
+                <circle cx="149" cy="58" r="9"/>
+              </svg>
+            </div>
+
+            <!-- assets/trucks/truck-5.svg : Tenteli Dağıtım Tırı -->
+            <div class="truck-item">
+              <svg class="line-illustration" id="asset-truck-5" viewBox="0 0 180 74">
+                <!-- Tenteli Dorse ve Gerdirme Tokaları -->
+                <rect x="8" y="13" width="108" height="39" rx="2"/>
+                <line x1="8" y1="42" x2="116" y2="42"/>
+                <line x1="24" y1="42" x2="24" y2="52"/>
+                <line x1="46" y1="42" x2="46" y2="52"/>
+                <line x1="68" y1="42" x2="68" y2="52"/>
+                <line x1="90" y1="42" x2="90" y2="52"/>
+                <line x1="116" y1="48" x2="124" y2="48"/>
+                <!-- Çekici Kabini -->
+                <path d="M124 52 V22 H152 L166 36 V52 Z"/>
+                <polyline points="144,26 144,36 161,36"/>
+                <line x1="166" y1="44" x2="171" y2="44"/>
+                <!-- Tekerlekler -->
+                <circle cx="28" cy="58" r="9"/>
+                <circle cx="50" cy="58" r="9"/>
+                <circle cx="102" cy="58" r="9"/>
+                <circle cx="149" cy="58" r="9"/>
+              </svg>
+            </div>
+
+            <!-- assets/trucks/truck-6.svg : Silobas / Tanker Lojistik Tırı -->
+            <div class="truck-item">
+              <svg class="line-illustration" id="asset-truck-6" viewBox="0 0 180 74">
+                <!-- Silindirik Tank Gövdesi -->
+                <rect x="10" y="18" width="104" height="28" rx="14"/>
+                <line x1="42" y1="14" x2="52" y2="14"/>
+                <line x1="74" y1="14" x2="84" y2="14"/>
+                <line x1="12" y1="49" x2="124" y2="49"/>
+                <!-- Çekici Kabini -->
+                <path d="M124 52 V23 H151 L166 36 V52 Z"/>
+                <polyline points="143,27 143,36 161,36"/>
+                <line x1="166" y1="44" x2="171" y2="44"/>
+                <!-- Tekerlekler -->
+                <circle cx="28" cy="58" r="9"/>
+                <circle cx="50" cy="58" r="9"/>
+                <circle cx="102" cy="58" r="9"/>
+                <circle cx="149" cy="58" r="9"/>
+              </svg>
+            </div>
+
+          </div>
+          <div class="convoy-road-line"><span></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         3. NELER YAPIYORUZ (4 HİZMET KARTI - HER BİRİ 2 CÜMLE)
+         ====================================================================== -->
+    <section class="section section-light" id="neler-yapiyoruz" aria-labelledby="servicesHeading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-kicker">Hizmet Alanlarımız</span>
+          <h2 class="section-title" id="servicesHeading">Neler Yapıyoruz</h2>
+          <p class="section-lead">
+            Liman sahasından şehir içi teslimat noktasına kadar tüm yük hareketlerini tek standart altında yönetiyoruz.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <span class="service-index">01</span>
+            <h3 class="service-title">Yük Taşımacılığı</h3>
+            <p class="service-desc">
+              Limanlar, sanayi bölgeleri ve sınır kapıları arasında tam ve parsiyel yüklerinizi tarifeli seferlerle taşıyoruz. Deniz ve kara aktarmalarını tek operasyon planında birleştirerek bekleme sürelerini en aza indiriyoruz.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <span class="service-index">02</span>
+            <h3 class="service-title">Depolama</h3>
+            <p class="service-desc">
+              Yüksek tavanlı bölge depolarımızda paletli, dökme ve hassas ürünlerinizi barkod tabanlı stok takibiyle muhafaza ediyoruz. Giriş kabulden sevkiyat hazırlığına kadar her aşamada envanter doğruluğunu anlık olarak raporluyoruz.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <span class="service-index">03</span>
+            <h3 class="service-title">Son Kilometre Teslimat</h3>
+            <p class="service-desc">
+              Şehir içi dağıtım filomuzla ürünleri bölge depolarından perakende noktalarına ve son alıcılara planlanan zaman aralığında ulaştırıyoruz. Teslimat kanıtı ve rota takibi sayesinde her paketin yolculuğunu şeffaf biçimde tamamlıyoruz.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <span class="service-index">04</span>
+            <h3 class="service-title">Tedarik Zinciri</h3>
+            <p class="service-desc">
+              Tedarikçiden son kullanıcıya uzanan tüm lojistik halkalarını talep yoğunluğuna ve mevsimsel geçişlere göre optimize ediyoruz. Gümrükleme, aktarma ve stok yenileme adımlarını senkronize ederek operasyonel darboğazları önlüyoruz.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         4. EKİPLERİMİZ (4 EKİP)
+         ====================================================================== -->
+    <section class="section section-white" id="ekiplerimiz" aria-labelledby="teamsHeading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-kicker">İnsan ve Saha Gücü</span>
+          <h2 class="section-title" id="teamsHeading">Ekiplerimiz</h2>
+          <p class="section-lead">
+            Her sevkiyatın arkasında rıhtım, depo, direksiyon ve kontrol masasında eşgüdümle çalışan dört uzman ekip bulunur.
+          </p>
+        </div>
+
+        <div class="teams-grid">
+          <article class="team-card">
+            <div class="team-header">
+              <h3 class="team-name">Operasyon</h3>
+              <span class="team-badge">7/24 Koordinasyon</span>
+            </div>
+            <p class="team-desc">
+              Gemi yanaşma pencerelerini, liman tahliyelerini ve tır çıkışlarını anlık olarak koordine eder. Olası hava veya trafik aksaklıklarında alternatif geçiş senaryolarını devreye alarak yük akışını korur.
+            </p>
+          </article>
+
+          <article class="team-card">
+            <div class="team-header">
+              <h3 class="team-name">Depo Yönetimi</h3>
+              <span class="team-badge">Envanter &amp; İstif</span>
+            </div>
+            <p class="team-desc">
+              Mal kabul, güvenli raf istifleme, sipariş toplama ve sevkiyat rampası yüklemelerinden sorumludur. Her paletin hasarsız ve doğru manifesto ile çıkış yapmasını denetler.
+            </p>
+          </article>
+
+          <article class="team-card">
+            <div class="team-header">
+              <h3 class="team-name">Sürücü Kadrosu</h3>
+              <span class="team-badge">Kara Filosu</span>
+            </div>
+            <p class="team-desc">
+              Uzun yol çekicilerini ve şehir içi dağıtım araçlarını güvenli sürüş standartları ve yasal dinlenme kurallarına tam uyumla kullanır. Yükü teslim alırken ve teslim ederken saha kontrolünü bizzat gerçekleştirir.
+            </p>
+          </article>
+
+          <article class="team-card">
+            <div class="team-header">
+              <h3 class="team-name">Planlama</h3>
+              <span class="team-badge">Rota &amp; Kapasite</span>
+            </div>
+            <p class="team-desc">
+              Filo doluluk oranlarını, teslimat pencerelerini ve bölgesel depo kapasitelerini veri odaklı modellerle kurgular. Boş kilometre oranını düşürerek müşterilerimiz için tutarlı transit süreler oluşturur.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         5. AMAÇ VE MİSYON (~95 KELİME, NET VE TAŞIMACILIK ODAKLI)
+         ====================================================================== -->
+    <section class="section section-navy" id="amacimiz" aria-labelledby="purposeHeading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-kicker">Kurumsal Duruş</span>
+          <h2 class="section-title" id="purposeHeading">Amaç ve Misyon</h2>
+        </div>
+
+        <div class="purpose-grid">
+          <div class="purpose-block">
+            <span class="purpose-label">Amacımız</span>
+            <h3 class="purpose-heading">Neden varız?</h3>
+            <p class="purpose-text">
+              Üreticiler, limanlar ve şehir içi dağıtım noktaları arasındaki operasyonel kopuklukları ortadan kaldırmak için varız. Deniz aşırı yük taşımacılığını yüksek kapasiteli depolama merkezleriyle ve düzenli kara filosuyla tek çatı altında birleştirerek ticaretin güvenle akmasını sağlıyoruz. Karmaşık aktarma süreçlerini sadeleştirip her ölçekten işletmeye öngörülebilir bir lojistik omurga sunuyoruz.
+            </p>
+          </div>
+
+          <div class="purpose-block">
+            <span class="purpose-label">Misyonumuz</span>
+            <h3 class="purpose-heading">Neyi taahhüt ediyoruz?</h3>
+            <p class="purpose-text">
+              Taşıdığımız her yükü liman rıhtımından bölge deposuna ve son alıcı kapısına kadar zamanında, hasarsız ve tam izlenebilirlikle ulaştırmayı; depolama envanterini sıfır hata disipliniyle korumayı ve her teslimat rotasında söz verdiğimiz saat dilimine koşulsuz sadık kalmayı taahhüt ediyoruz.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         6. İLETİŞİM (DOĞRULAMALI FORM + HARİTA KUTUSU)
+         ====================================================================== -->
+    <section class="section section-light" id="iletisim" aria-labelledby="contactHeading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-kicker">Bize Ulaşın</span>
+          <h2 class="section-title" id="contactHeading">İletişim</h2>
+          <p class="section-lead">
+            Yük taşımacılığı, depolama kapasitesi veya düzenli dağıtım talepleriniz için ekibimize mesaj bırakın.
+          </p>
+        </div>
+
+        <div class="contact-layout">
+          <!-- İletişim Formu (Yalnızca İstemci Tarafı Doğrulama) -->
+          <div class="contact-form-card">
+            <form id="contactForm" novalidate>
+              <div class="form-group">
+                <label for="fullName" class="form-label">Ad Soyad *</label>
+                <input
+                  type="text"
+                  id="fullName"
+                  name="fullName"
+                  class="form-control"
+                  placeholder="Örn: Deniz Kaya"
+                  autocomplete="name"
+                  required
+                >
+                <p class="field-error" id="fullNameError" role="alert">
+                  Lütfen adınızı ve soyadınızı girin.
+                </p>
+              </div>
+
+              <div class="form-group">
+                <label for="email" class="form-label">E-posta Adresi *</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="form-control"
+                  placeholder="ornek@sirketiniz.com"
+                  autocomplete="email"
+                  required
+                >
+                <p class="field-error" id="emailError" role="alert">
+                  Lütfen geçerli bir e-posta adresi girin.
+                </p>
+              </div>
+
+              <div class="form-group">
+                <label for="message" class="form-label">Mesajınız *</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  class="form-control"
+                  placeholder="Taşıma güzergâhı, yük tipi veya depolama ihtiyacınızı kısaca belirtin..."
+                  required
+                ></textarea>
+                <p class="field-error" id="messageError" role="alert">
+                  Lütfen mesajınızı yazın.
+                </p>
+              </div>
+
+              <button type="submit" class="btn-primary">
+                Mesajı Gönder
+              </button>
+
+              <div class="form-success" id="formSuccess" role="status" aria-live="polite">
+                Mesajınız başarıyla alındı. Operasyon ekibimiz en kısa sürede sizinle iletişime geçecektir.
+              </div>
+            </form>
+          </div>
+
+          <!-- Harita Yer Tutucusu (Üçüncü parti betik içermez) -->
+          <aside class="map-placeholder" aria-label="Konum ve Liman Ofisi Bilgisi">
+            <!-- Dekoratif Liman Izgarası Çizgileri -->
+            <svg class="map-grid-art" viewBox="0 0 400 320" preserveAspectRatio="none" aria-hidden="true">
+              <line x1="0" y1="64" x2="400" y2="64"/>
+              <line x1="0" y1="128" x2="400" y2="128"/>
+              <line x1="0" y1="192" x2="400" y2="192"/>
+              <line x1="0" y1="256" x2="400" y2="256"/>
+              <line x1="80" y1="0" x2="80" y2="320"/>
+              <line x1="160" y1="0" x2="160" y2="320"/>
+              <line x1="240" y1="0" x2="240" y2="320"/>
+              <line x1="320" y1="0" x2="320" y2="320"/>
+              <!-- Kıyı şeridi ve rıhtım çizimi -->
+              <path d="M0 220 L140 220 L175 180 L290 180 L330 140 L400 140"/>
+              <circle cx="232" cy="180" r="24"/>
+            </svg>
+
+            <div class="map-badge-wrap">
+              <span class="map-badge">Harita</span>
+              <span class="map-coords">40.8162° K, 29.3014° D</span>
+            </div>
+
+            <div class="map-pin-center">
+              <svg class="map-pin-icon" viewBox="0 0 36 36" aria-hidden="true">
+                <path d="M18 3C11.9 3 7 7.9 7 14C7 22.2 18 33 18 33C18 33 29 22.2 29 14C29 7.9 24.1 3 18 3Z"/>
+                <circle cx="18" cy="14" r="4"/>
+              </svg>
+              <div>
+                <p class="map-terminal-title">Northline Liman Terminali</p>
+                <p class="map-terminal-sub">Rıhtım Kapısı B-4 &amp; Merkez Antrepo</p>
+              </div>
+            </div>
+
+            <div class="map-address-box">
+              <p class="map-address-title">Merkez Adres</p>
+              <address class="map-address-line">
+                Kuzey Liman Bulvarı No: 48, Rıhtım Bölgesi, 34940 Tuzla / İstanbul
+              </address>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       7. ALT BİLGİ (FOOTER)
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="#ust" class="brand-wordmark">
+            <svg class="brand-mark-line" viewBox="0 0 24 16" fill="none" aria-hidden="true">
+              <path d="M2 13L8 3H22" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M6 13H20" stroke-width="2.2" stroke-linecap="round"/>
+            </svg>
+            <span>Northline</span>
+          </a>
+          <p class="footer-brand-desc">
+            Deniz yolu, bölge depolama ve kara taşımacılığını tek çizgide buluşturan entegre lojistik ortağı.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="footer-heading">Bölümler</h2>
+          <ul class="footer-links">
+            <li><a href="#neler-yapiyoruz">Neler Yapıyoruz</a></li>
+            <li><a href="#ekiplerimiz">Ekiplerimiz</a></li>
+            <li><a href="#amacimiz">Amacımız</a></li>
+            <li><a href="#iletisim">İletişim</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="footer-heading">Liman Ofisi</h2>
+          <address class="footer-address">
+            Kuzey Liman Bulvarı No: 48<br>
+            Rıhtım Bölgesi, 34940 Tuzla / İstanbul
+          </address>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; <span id="currentYear">2026</span> Northline Lojistik A.Ş. Tüm hakları saklıdır.</p>
+        <p>Deniz &bull; Depo &bull; Kara Konvoyu</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       DAVRANIŞ BETİĞİ (js/main.js eşdeğeri saf Vanilla JavaScript)
+       Analitik, izleyici veya dış ağ isteği içermez.
+       ======================================================================== -->
+  <script>
+    (function () {
+      'use strict';
+
+      /* 1. Güncel yıl bilgisini alt bilgiye yazdır */
+      var yearEl = document.getElementById('currentYear');
+      if (yearEl) {
+        yearEl.textContent = String(new Date().getFullYear());
+      }
+
+      /* 2. Mobil menü açma / kapatma kontrolü */
+      var menuToggle = document.getElementById('menuToggle');
+      var primaryNav = document.getElementById('primaryNav');
+      var iconOpen = document.getElementById('menuIconOpen');
+      var iconClose = document.getElementById('menuIconClose');
+
+      function setMenuState(isOpen) {
+        if (!menuToggle || !primaryNav) return;
+        primaryNav.classList.toggle('is-open', isOpen);
+        menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        if (iconOpen && iconClose) {
+          iconOpen.style.display = isOpen ? 'none' : 'block';
+          iconClose.style.display = isOpen ? 'block' : 'none';
+        }
+      }
+
+      if (menuToggle && primaryNav) {
+        menuToggle.addEventListener('click', function () {
+          var currentlyOpen = primaryNav.classList.contains('is-open');
+          setMenuState(!currentlyOpen);
+        });
+
+        /* Ekran genişlediğinde açık kalan mobil menüyü sıfırla */
+        window.addEventListener('resize', function () {
+          if (window.innerWidth >= 768 && primaryNav.classList.contains('is-open')) {
+            setMenuState(false);
+          }
+        });
+      }
+
+      /* 3. Sayfa içi yumuşak kaydırma (Smooth in-page navigation) */
+      var anchorLinks = document.querySelectorAll('a[href^="#"]');
+      anchorLinks.forEach(function (link) {
+        link.addEventListener('click', function (event) {
+          var targetId = link.getAttribute('href');
+          if (!targetId || targetId.length < 2) return;
+
+          var targetSection = document.querySelector(targetId);
+          if (!targetSection) return;
+
+          event.preventDefault();
+          setMenuState(false);
+
+          targetSection.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        });
+      });
+
+      /* 4. İletişim formu istemci tarafı doğrulama ve başarı durumu */
+      var contactForm = document.getElementById('contactForm');
+      var fullNameInput = document.getElementById('fullName');
+      var emailInput = document.getElementById('email');
+      var messageInput = document.getElementById('message');
+
+      var fullNameError = document.getElementById('fullNameError');
+      var emailError = document.getElementById('emailError');
+      var messageError = document.getElementById('messageError');
+      var formSuccess = document.getElementById('formSuccess');
+
+      function isValidEmail(value) {
+        /* Basit ve güvenilir e-posta biçim kontrolü */
+        return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value);
+      }
+
+      function toggleFieldError(inputEl, errorEl, showError, customMessage) {
+        if (!inputEl || !errorEl) return;
+        if (customMessage) {
+          errorEl.textContent = customMessage;
+        }
+        inputEl.classList.toggle('has-error', showError);
+        inputEl.setAttribute('aria-invalid', showError ? 'true' : 'false');
+        errorEl.classList.toggle('is-visible', showError);
+      }
+
+      if (contactForm) {
+        /* Kullanıcı yazmaya başladığında ilgili alanın hata uyarısını temizle */
+        [
+          { input: fullNameInput, error: fullNameError },
+          { input: emailInput, error: emailError },
+          { input: messageInput, error: messageError }
+        ].forEach(function (item) {
+          if (!item.input) return;
+          item.input.addEventListener('input', function () {
+            toggleFieldError(item.input, item.error, false);
+            if (formSuccess) {
+              formSuccess.classList.remove('is-visible');
+            }
+          });
+        });
+
+        contactForm.addEventListener('submit', function (event) {
+          event.preventDefault();
+
+          var nameVal = fullNameInput ? fullNameInput.value.trim() : '';
+          var emailVal = emailInput ? emailInput.value.trim() : '';
+          var messageVal = messageInput ? messageInput.value.trim() : '';
+
+          var hasError = false;
+
+          if (!nameVal) {
+            toggleFieldError(fullNameInput, fullNameError, true, 'Lütfen adınızı ve soyadınızı girin.');
+            hasError = true;
+          } else {
+            toggleFieldError(fullNameInput, fullNameError, false);
+          }
+
+          if (!emailVal) {
+            toggleFieldError(emailInput, emailError, true, 'Lütfen e-posta adresinizi girin.');
+            hasError = true;
+          } else if (!isValidEmail(emailVal)) {
+            toggleFieldError(emailInput, emailError, true, 'Lütfen geçerli bir e-posta adresi girin (örn: ad@sirket.com).');
+            hasError = true;
+          } else {
+            toggleFieldError(emailInput, emailError, false);
+          }
+
+          if (!messageVal) {
+            toggleFieldError(messageInput, messageError, true, 'Lütfen mesajınızı yazın.');
+            hasError = true;
+          } else {
+            toggleFieldError(messageInput, messageError, false);
+          }
+
+          if (hasError) {
+            if (formSuccess) {
+              formSuccess.classList.remove('is-visible');
+            }
+            /* İlk hatalı alana odaklan */
+            var firstInvalid = contactForm.querySelector('.has-error');
+            if (firstInvalid) {
+              firstInvalid.focus();
+            }
+            return;
+          }
+
+          /* Geçerli gönderim: dışarıya veri gönderme, başarı mesajını göster ve formu sıfırla */
+          contactForm.reset();
+          if (formSuccess) {
+            formSuccess.classList.add('is-visible');
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

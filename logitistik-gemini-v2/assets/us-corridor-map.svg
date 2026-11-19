@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 520" fill="none" role="img" aria-label="United States 48-state freight corridor network map">
+  <!-- Stylized geometric Lower-48 US outline -->
+  <path
+    d="M118 68 L225 78 L345 86 L468 92 L542 96 L594 114 L634 102 L686 122 L735 112 L784 94 L814 78 L836 106 L822 146 L786 178 L774 224 L750 264 L728 310 L706 346 L724 410 L704 432 L680 398 L658 358 L602 356 L552 362 L526 394 L478 394 L452 444 L424 440 L396 396 L354 378 L314 384 L250 362 L176 348 L128 314 L96 254 L84 182 L94 116 Z"
+    fill="#1E2025"
+    stroke="#383C44"
+    stroke-width="2"
+    stroke-linejoin="round"
+  />
+
+  <!-- Subtle regional grid lines inside map -->
+  <g stroke="#292C33" stroke-width="1" stroke-dasharray="4 6">
+    <line x1="120" y1="170" x2="780" y2="170"/>
+    <line x1="120" y1="265" x2="740" y2="265"/>
+    <line x1="160" y1="350" x2="690" y2="350"/>
+    <line x1="270" y1="84" x2="270" y2="365"/>
+    <line x1="450" y1="92" x2="450" y2="430"/>
+    <line x1="630" y1="106" x2="630" y2="355"/>
+  </g>
+
+  <!-- Primary Interstate Freight Corridors (Amber & Crimson) -->
+  <!-- I-90 / I-80 Northern Transcontinental (Tacoma -> Chicago -> Newark) -->
+  <path d="M126 108 Q320 128 538 172 Q658 184 764 176" stroke="#E8921D" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- I-40 / I-70 Central Corridor (Ontario CA -> Dallas -> Atlanta -> Newark) -->
+  <path d="M156 304 Q312 318 456 342 Q568 332 642 308 Q714 258 764 176" stroke="#C83228" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- I-35 / I-55 Central Spine (Chicago -> Dallas) -->
+  <path d="M538 172 Q502 260 456 342" stroke="#E8921D" stroke-width="2.2" stroke-dasharray="6 5" stroke-linecap="round"/>
+  <!-- I-5 West Coast Corridor (Tacoma -> Ontario CA) -->
+  <path d="M126 108 Q122 210 156 304" stroke="#E8921D" stroke-width="2.2" stroke-dasharray="6 5" stroke-linecap="round"/>
+  <!-- I-75 / I-65 Midwest to Southeast (Chicago -> Atlanta) -->
+  <path d="M538 172 Q594 240 642 308" stroke="#C83228" stroke-width="2" stroke-dasharray="5 5" stroke-linecap="round"/>
+  <!-- I-80 West to Midwest (Ontario CA -> Chicago) -->
+  <path d="M156 304 Q336 226 538 172" stroke="#8C6239" stroke-width="1.6" stroke-dasharray="4 6" stroke-linecap="round"/>
+
+  <!-- Terminal Hubs -->
+  <!-- Tacoma / Seattle, WA -->
+  <g transform="translate(126, 108)">
+    <circle r="13" fill="#E8921D" fill-opacity="0.18"/>
+    <circle r="6" fill="#E8921D" stroke="#111214" stroke-width="2"/>
+    <text x="14" y="-6" fill="#F5F4F0" font-family="Segoe UI, system-ui, sans-serif" font-size="13" font-weight="700">TACOMA, WA</text>
+    <text x="14" y="10" fill="#A8A6A1" font-family="Segoe UI, system-ui, sans-serif" font-size="10">Pacific NW Port Hub</text>
+  </g>
+
+  <!-- Ontario / Los Angeles, CA -->
+  <g transform="translate(156, 304)">
+    <circle r="15" fill="#C83228" fill-opacity="0.22"/>
+    <circle r="6.5" fill="#C83228" stroke="#111214" stroke-width="2"/>
+    <text x="14" y="-4" fill="#F5F4F0" font-family="Segoe UI, system-ui, sans-serif" font-size="13" font-weight="700">ONTARIO, CA</text>
+    <text x="14" y="12" fill="#A8A6A1" font-family="Segoe UI, system-ui, sans-serif" font-size="10">West Coast Cross-Dock</text>
+  </g>
+
+  <!-- Dallas, TX -->
+  <g transform="translate(456, 342)">
+    <circle r="15" fill="#C83228" fill-opacity="0.22"/>
+    <circle r="6.5" fill="#C83228" stroke="#111214" stroke-width="2"/>
+    <text x="-12" y="28" fill="#F5F4F0" font-family="Segoe UI, system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="middle">DALLAS, TX</text>
+    <text x="-12" y="42" fill="#A8A6A1" font-family="Segoe UI, system-ui, sans-serif" font-size="10" text-anchor="middle">South Central Hub</text>
+  </g>
+
+  <!-- Chicago, IL (HQ) -->
+  <g transform="translate(538, 172)">
+    <circle r="20" fill="#E8921D" fill-opacity="0.22"/>
+    <circle r="11" fill="#E8921D" fill-opacity="0.35"/>
+    <circle r="6.5" fill="#E8921D" stroke="#111214" stroke-width="2"/>
+    <text x="0" y="-22" fill="#F5A623" font-family="Segoe UI, system-ui, sans-serif" font-size="14" font-weight="800" text-anchor="middle">CHICAGO, IL (HQ)</text>
+    <text x="0" y="-8" fill="#D4D2CC" font-family="Segoe UI, system-ui, sans-serif" font-size="10" text-anchor="middle">Central Dispatch &amp; Terminal</text>
+  </g>
+
+  <!-- Atlanta, GA -->
+  <g transform="translate(642, 308)">
+    <circle r="14" fill="#C83228" fill-opacity="0.22"/>
+    <circle r="6" fill="#C83228" stroke="#111214" stroke-width="2"/>
+    <text x="14" y="4" fill="#F5F4F0" font-family="Segoe UI, system-ui, sans-serif" font-size="13" font-weight="700">ATLANTA, GA</text>
+    <text x="14" y="19" fill="#A8A6A1" font-family="Segoe UI, system-ui, sans-serif" font-size="10">Southeast Hub</text>
+  </g>
+
+  <!-- Newark, NJ -->
+  <g transform="translate(764, 176)">
+    <circle r="15" fill="#E8921D" fill-opacity="0.22"/>
+    <circle r="6.5" fill="#E8921D" stroke="#111214" stroke-width="2"/>
+    <text x="-14" y="-12" fill="#F5F4F0" font-family="Segoe UI, system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="end">NEWARK, NJ</text>
+    <text x="-14" y="3" fill="#A8A6A1" font-family="Segoe UI, system-ui, sans-serif" font-size="10" text-anchor="end">Northeast Port Hub</text>
+  </g>
+</svg>

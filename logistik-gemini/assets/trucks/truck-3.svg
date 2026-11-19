@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 72" fill="none" stroke="#D6E6F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Konteyner taşıyıcı tır">
+  <!-- Intermodal container -->
+  <rect x="10" y="13" width="106" height="31"/>
+  <!-- Corrugated vertical container grooves -->
+  <line x1="22" y1="17" x2="22" y2="40"/>
+  <line x1="34" y1="17" x2="34" y2="40"/>
+  <line x1="46" y1="17" x2="46" y2="40"/>
+  <line x1="58" y1="17" x2="58" y2="40"/>
+  <line x1="70" y1="17" x2="70" y2="40"/>
+  <line x1="82" y1="17" x2="82" y2="40"/>
+  <line x1="94" y1="17" x2="94" y2="40"/>
+  <line x1="106" y1="17" x2="106" y2="40"/>
+  <!-- Skeletal chassis beam -->
+  <rect x="8" y="44" width="110" height="4"/>
+  <!-- Chassis & landing gear -->
+  <line x1="8" y1="53" x2="15" y2="53"/>
+  <line x1="57" y1="53" x2="116" y2="53"/>
+  <line x1="96" y1="48" x2="96" y2="53"/>
+  <path d="M16 54 A10 10 0 0 1 36 54 A10 10 0 0 1 56 54"/>
+
+  <!-- Coupling -->
+  <line x1="118" y1="46" x2="124" y2="46"/>
+
+  <!-- Tractor cab (facing right) -->
+  <path d="M124 48 L124 22 Q124 18 128 18 L153 18 Q158 18 161 23 L170 36 Q173 40 173 46 L173 56 L170 56 A10 10 0 0 0 150 56 L138 56 A10 10 0 0 0 118 56"/>
+  <path d="M142 23 L156 23 L164 36 L142 36 Z"/>
+  <line x1="142" y1="36" x2="142" y2="50"/>
+  <line x1="146" y1="41" x2="151" y2="41"/>
+  <line x1="166" y1="42" x2="172" y2="42"/>
+  <line x1="166" y1="46" x2="172" y2="46"/>
+  <rect x="168" y="49" width="5" height="3"/>
+
+  <!-- Wheels -->
+  <circle cx="26" cy="58" r="8"/>
+  <circle cx="26" cy="58" r="3"/>
+  <circle cx="46" cy="58" r="8"/>
+  <circle cx="46" cy="58" r="3"/>
+  <circle cx="128" cy="58" r="8"/>
+  <circle cx="128" cy="58" r="3"/>
+  <circle cx="160" cy="58" r="8"/>
+  <circle cx="160" cy="58" r="3"/>
+</svg>
