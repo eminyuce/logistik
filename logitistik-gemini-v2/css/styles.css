@@ -412,6 +412,55 @@ button, input, select, textarea {
   border-right: none;
 }
 
+/* Floating Bottom-Right WhatsApp Button */
+.whatsapp-fab {
+  position: fixed;
+  right: 20px;
+  bottom: max(20px, env(safe-area-inset-bottom));
+  z-index: 95;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  height: 54px;
+  padding: 0 1.15rem 0 0.95rem;
+  background-color: #25D366;
+  color: var(--white);
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  box-shadow: 0 10px 26px rgba(14, 15, 17, 0.3);
+  transition: transform var(--transition), background-color var(--transition), box-shadow var(--transition);
+}
+
+.whatsapp-fab:hover,
+.whatsapp-fab:focus-visible {
+  background-color: #1EB858;
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(14, 15, 17, 0.36);
+}
+
+.whatsapp-icon {
+  flex-shrink: 0;
+  display: block;
+}
+
+@media (max-width: 640px) {
+  .whatsapp-fab {
+    right: 16px;
+    bottom: max(16px, env(safe-area-inset-bottom));
+    width: 56px;
+    height: 56px;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .whatsapp-label {
+    display: none;
+  }
+}
+
 /* ==========================================================================
    Buttons
    ========================================================================== */
