@@ -2,14 +2,14 @@
   <!-- Stylized geometric Lower-48 US outline -->
   <path
     d="M118 68 L225 78 L345 86 L468 92 L542 96 L594 114 L634 102 L686 122 L735 112 L784 94 L814 78 L836 106 L822 146 L786 178 L774 224 L750 264 L728 310 L706 346 L724 410 L704 432 L680 398 L658 358 L602 356 L552 362 L526 394 L478 394 L452 444 L424 440 L396 396 L354 378 L314 384 L250 362 L176 348 L128 314 L96 254 L84 182 L94 116 Z"
-    fill="#7041AB"
-    stroke="#A67EE0"
+    fill="#9276ED"
+    stroke="#C9B8FC"
     stroke-width="2"
     stroke-linejoin="round"
   />
 
   <!-- Subtle regional grid lines inside map -->
-  <g stroke="#8658C2" stroke-width="1" stroke-dasharray="4 6">
+  <g stroke="#A890F5" stroke-width="1" stroke-dasharray="4 6">
     <line x1="120" y1="170" x2="780" y2="170"/>
     <line x1="120" y1="265" x2="740" y2="265"/>
     <line x1="160" y1="350" x2="690" y2="350"/>
