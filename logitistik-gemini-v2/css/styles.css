@@ -1,25 +1,29 @@
 /* ==========================================================================
-   IRONROAD FREIGHT — U.S. Trucking Website (Zero-Blue Industrial Palette)
-   Colors: Asphalt Obsidian, Heavy Charcoal, Warm Concrete, Highway Amber, Freight Crimson
+   TROY FREIGHT LLC — U.S. Trucking Website (Light/Royal Purple & White Brand Palette)
    ========================================================================== */
 
 :root {
-  /* Strictly NO blue tones */
-  --asphalt-950: #0E0F11;
-  --asphalt-900: #15171A;
-  --asphalt-800: #1F2227;
-  --asphalt-700: #2D3138;
-  --charcoal-600: #4A4E57;
-  --charcoal-500: #666A73;
-  --stone-300: #D8D5CE;
-  --stone-200: #E7E4DD;
-  --stone-100: #F4F2EC;
+  /* TROY Brand Purple Surface Scale (Lighter, vibrant royal purple — no black) */
+  --asphalt-950: #5B2D90;
+  --asphalt-900: #6E3DA8;
+  --asphalt-800: #7D4BB9;
+  --asphalt-700: #9366CC;
+
+  /* Readable Deep Plum Ink for Light Backgrounds */
+  --ink-900: #2A1447;
+  --charcoal-600: #4B3868;
+  --charcoal-500: #6D5A88;
+
+  /* Soft Lavender-White Neutrals */
+  --stone-300: #D9CEEE;
+  --stone-200: #EAE3F7;
+  --stone-100: #F6F3FB;
   --white: #FFFFFF;
 
-  /* American Trucking Accents */
-  --amber-500: #E8921D;
-  --amber-400: #F5A623;
-  --amber-600: #C97A10;
+  /* Accents */
+  --amber-500: #F0A124;
+  --amber-400: #FFD166;
+  --amber-600: #D48412;
   --crimson-600: #C83228;
   --crimson-700: #A9251C;
   --crimson-50: #FDF1F0;
@@ -34,8 +38,8 @@
   --radius-sm: 6px;
   --radius-md: 12px;
   --radius-lg: 18px;
-  --shadow-soft: 0 12px 32px rgba(14, 15, 17, 0.08);
-  --shadow-heavy: 0 20px 50px rgba(14, 15, 17, 0.35);
+  --shadow-soft: 0 12px 32px rgba(75, 29, 122, 0.10);
+  --shadow-heavy: 0 20px 50px rgba(75, 29, 122, 0.24);
   --transition: 0.22s ease;
 }
 
@@ -56,7 +60,7 @@ body {
   font-family: var(--font-sans);
   font-size: 1rem;
   line-height: 1.6;
-  color: var(--asphalt-900);
+  color: var(--ink-900);
   background-color: var(--white);
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
@@ -219,7 +223,7 @@ button, input, select, textarea {
   background-color: var(--asphalt-950);
   padding: 0.35rem 0.45rem;
   border-radius: 999px;
-  box-shadow: 0 6px 20px rgba(14, 15, 17, 0.16);
+  box-shadow: 0 6px 20px rgba(91, 45, 144, 0.22);
 }
 
 .nav-list {
@@ -235,7 +239,7 @@ button, input, select, textarea {
   padding: 0.5rem 0.9rem;
   font-size: 0.88rem;
   font-weight: 600;
-  color: #E4E2DC;
+  color: #F3EEFC;
   border-radius: 999px;
   transition: background-color var(--transition), color var(--transition);
   white-space: nowrap;
@@ -502,8 +506,8 @@ button, input, select, textarea {
 }
 
 .btn-outline-light {
-  background-color: rgba(14, 15, 17, 0.45);
-  border-color: rgba(244, 242, 236, 0.55);
+  background-color: rgba(91, 45, 144, 0.48);
+  border-color: rgba(255, 255, 255, 0.72);
   color: var(--white);
 }
 
@@ -547,8 +551,8 @@ button, input, select, textarea {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(14, 15, 17, 0.50) 0%, rgba(14, 15, 17, 0.18) 46%, rgba(14, 15, 17, 0.04) 100%),
-    linear-gradient(180deg, rgba(14, 15, 17, 0.08) 0%, rgba(14, 15, 17, 0.0) 50%, rgba(14, 15, 17, 0.42) 100%);
+    linear-gradient(90deg, rgba(64, 28, 108, 0.52) 0%, rgba(75, 35, 124, 0.20) 46%, rgba(91, 45, 144, 0.04) 100%),
+    linear-gradient(180deg, rgba(64, 28, 108, 0.10) 0%, rgba(64, 28, 108, 0.0) 50%, rgba(64, 28, 108, 0.42) 100%);
 }
 
 .hero-inner {
@@ -572,8 +576,8 @@ button, input, select, textarea {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--amber-400);
-  background-color: rgba(14, 15, 17, 0.68);
-  border: 1px solid rgba(232, 146, 29, 0.4);
+  background-color: rgba(91, 45, 144, 0.82);
+  border: 1px solid rgba(255, 209, 102, 0.45);
   padding: 0.4rem 0.9rem;
   border-radius: 999px;
   margin-bottom: 1.25rem;
@@ -683,8 +687,8 @@ button, input, select, textarea {
 .hero-metrics {
   position: relative;
   z-index: 2;
-  background-color: rgba(14, 15, 17, 0.9);
-  border-top: 1px solid rgba(232, 146, 29, 0.35);
+  background-color: rgba(91, 45, 144, 0.94);
+  border-top: 2px solid var(--amber-400);
 }
 
 .metrics-grid {
@@ -1062,7 +1066,7 @@ button, input, select, textarea {
 }
 
 .industries-lead {
-  color: #CECCC6;
+  color: #EDE6FA;
   font-size: 1.02rem;
   margin-bottom: 1.75rem;
 }
@@ -1105,7 +1109,7 @@ button, input, select, textarea {
 
 .industry-text {
   font-size: 0.91rem;
-  color: #C4C2BC;
+  color: #EAE2F8;
   line-height: 1.6;
 }
 
@@ -1321,7 +1325,7 @@ button, input, select, textarea {
 
 .dispatch-sub {
   font-size: 0.92rem;
-  color: #C7C5BE;
+  color: #EAE2F8;
 }
 
 .dispatch-details {
@@ -1342,7 +1346,7 @@ button, input, select, textarea {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #9A9892;
+  color: #D5C4F2;
 }
 
 .dispatch-value {
@@ -1412,8 +1416,8 @@ button, input, select, textarea {
   bottom: 0.75rem;
   font-size: 0.72rem;
   font-weight: 700;
-  color: #D4D2CC;
-  background-color: rgba(14, 15, 17, 0.78);
+  color: #F3EEFC;
+  background-color: rgba(91, 45, 144, 0.85);
   padding: 0.2rem 0.5rem;
   border-radius: 4px;
 }
@@ -1453,7 +1457,7 @@ button, input, select, textarea {
   margin-top: 1rem;
   max-width: 340px;
   font-size: 0.92rem;
-  color: #B4B2AC;
+  color: #E7DDF8;
   line-height: 1.65;
 }
 
@@ -1476,7 +1480,7 @@ button, input, select, textarea {
 
 .footer-links a {
   font-size: 0.92rem;
-  color: #C4C2BC;
+  color: #EDE6FA;
   transition: color var(--transition);
 }
 
@@ -1487,7 +1491,7 @@ button, input, select, textarea {
 .footer-address {
   font-size: 0.92rem;
   line-height: 1.75;
-  color: #C4C2BC;
+  color: #EDE6FA;
 }
 
 .compliance-strip {
@@ -1504,7 +1508,7 @@ button, input, select, textarea {
   font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.1em;
-  color: #DFDDD7;
+  color: var(--white);
   background-color: var(--asphalt-900);
   border: 1px solid var(--asphalt-700);
   padding: 0.4rem 0.8rem;
@@ -1518,7 +1522,7 @@ button, input, select, textarea {
 
 .footer-copy {
   font-size: 0.84rem;
-  color: #93918B;
+  color: #D8C9F2;
 }
 
 /* ==========================================================================
